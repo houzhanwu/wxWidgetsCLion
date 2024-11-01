@@ -12,7 +12,7 @@
 
 
 #include <fstream>
-#include "api/json/json/json.h"
+#include "json/json/json.h"
 
 //#include "nlohmann/json.hpp"
 #include <string>
@@ -31,7 +31,7 @@
 
 
 
-//#include "MainPanel.h"
+#include "MainPanel.h"
 
 
 class MyApp : public wxApp
@@ -106,8 +106,8 @@ void MyFrame::OnAbout(wxCommandEvent& event)
     //wxMessageBox("This is a wxWidgets Hello World example", "About Hello World", wxOK | wxICON_INFORMATION);
 
 
-    // MainPanel * mainPanel = new MainPanel(this);
-    // mainPanel->Show();
+    MainPanel * mainPanel = new MainPanel(this);
+    mainPanel->Show();
 
 
 }
@@ -143,20 +143,20 @@ void MyFrame::OnHello(wxCommandEvent& event)
     wxLogMessage(mystring);
     //using json = nlohmann::json;
 
-    // Json::Reader reader;
-    // Json::Value value;
-    // if (reader.parse(stlstring, value))            // json字符串转为json对象
-    // {
-    //
-    //     std::string name = value["user"]["username"].asString();
-    //     std::string deptName = value["user"]["deptName"].asString();
-    //     std::cout<<name<<" "<<name<<" "<<deptName<<std::endl;
-    //     std::string out = "name:" + name + " deptName:" + deptName;
-    //        // 示例日志
-    //     LogToFile("Application started.");
-    //     LogToFile(out);
-    //     LogToFile("Application end.");
-    // }
+    Json::Reader reader;
+    Json::Value value;
+    if (reader.parse(stlstring, value))            // json字符串转为json对象
+    {
+
+        std::string name = value["user"]["username"].asString();
+        std::string deptName = value["user"]["deptName"].asString();
+        std::cout<<name<<" "<<name<<" "<<deptName<<std::endl;
+        std::string out = "name:" + name + " deptName:" + deptName;
+           // 示例日志
+        LogToFile("Application started.");
+        LogToFile(out);
+        LogToFile("Application end.");
+    }
 
 
 
